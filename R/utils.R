@@ -9,30 +9,32 @@ readConfig <- function(yaml) {
   yaml::read_yaml(yaml)
 }
 
-#' Create config object in global env
+#' Set input config object in global env
 #'
-#' The config object needs to be available to provide parameters to form input functions.
+#' The config object needs to be available to provide parameters to form input funs.
 #' This first calls upon `readConfig` to read the YAML file.
-#' However, depending on whether a global object `.F` aready exists,
-#' it will append the new config.
+#' Depending on whether a global object `.F` already exists,
+#' it will APPEND the new config OR return a config.
 #'
 #' TO DO: Warn if input namespaces confict.
 #' TO DO: Better way to handle/check .F global object?
 #' @inheritParams readConfig
 #' @export
-getConfig <- function(yaml) {
+setConfig <- function(yaml) {
   conf <- readConfig(yaml)
   inputs <- conf$Inputs
   if(exists(".F")) {
     # check for attribute "sourcefile", otherwise .F may not be what we think it is
-    if(is.null(attr(".F", "sourcefile"))) stop("Config may not have been set properly via `getConfig`.")
+    if(is.null(attr(.F, "sourcefile"))) stop("Config may not have been set properly via `getConfig`.")
     # append to .F
-    .F <- get(.F)
-    .F <- c(.F, inputs)
+    current <- get(".F")
+    .F <- c(current, inputs)
+    attr(.F, "sourcefile") <- c(attr(current, "sourcefile"), yaml)
     return(.F)
   } else {
-    attr(inputs, "sourcefile") <- yaml
-    return(inputs)
+    .F <- inputs
+    attr(.F, "sourcefile") <- yaml
+    return(.F)
   }
 }
 
@@ -49,9 +51,44 @@ schemaRange <- function(jsonld, id, warn = FALSE) {
   graph <- schema$`@graph`
   matches <- Filter(function(x) x$`@id` == id, graph)
   if(!length(matches)) stop("Id not found in reference schema!")
-  if(length(matches) > 1) warning("Duplicate ids found in schema, defaulting to using first.")
+  if(warn && length(matches) > 1) warning("Duplicate ids found in schema, defaulting to using first.")
   range_ids <- sapply(matches[[1]]$`schema:rangeIncludes`, function(x) x$`@id`)
   range_labels <- Filter(function(x) x$`@id` %in% range_ids, graph) %>%
     sapply(function(x) x$`sms:displayName`)
   range_labels
 }
+
+#' Read YAML config file
+#'
+#' Form inputs are specified via a YAML config file.
+#'
+#' TODO: Validate config after read.
+#' @param yaml YAML configuration file.
+#' @export
+readConfig <- function(yaml) {
+  yaml::read_yaml(yaml)
+}
+
+#' Draft DSP with recommended bundle
+#' 
+#' This is a convenience function to bring all the "standard" 
+#' paperwork templates into the draft space. 
+#' It is updated to reflect the latest concept of what is standard, 
+#' i.e. some sections might be added or removed from this bundle over time. 
+#' 
+#' @param dir Directory folder to create; forms will be organized here and it will be set as working directory. 
+#' @param verbose Whether to be verbose.
+#' @export
+draftStandardDSP <- function(dir, verbose = TRUE) {
+  wd <- getwd()
+  if(verbose) message("Creating template bundle in '", dir, "'...")
+  dir.create(dir)
+  setwd(dir)
+  standard <- c("DSP_Standard", "DSP_Core", "Section_Commitment", "Section_Data_Licensing", "Section_Data_Sharing")
+  for(template in standard) {
+    rmarkdown::draft(file = template, template = template, package = "formd", edit = FALSE)
+  }
+  if(verbose) message("Done. Happy drafting!")
+}
+
+

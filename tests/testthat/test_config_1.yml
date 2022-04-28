@@ -1,0 +1,7 @@
+Meta:
+  description: Test config 1.
+Inputs:
+  Input1:
+    name: Input1
+    type: hidden
+    form: x

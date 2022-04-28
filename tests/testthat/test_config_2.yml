@@ -1,0 +1,7 @@
+Meta:
+  description: Test config 2.
+Inputs:
+  Input2:
+    name: Input2
+    type: text
+    form: x
