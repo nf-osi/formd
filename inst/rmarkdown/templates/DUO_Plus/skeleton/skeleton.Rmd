@@ -1,0 +1,96 @@
+---
+title: "DUO Plus"
+author: "Sage Bionetworks"
+date: "2022-04-27"
+output: 
+  html_document: default
+params:
+  duo_plus_config: duo_plus_config.yml
+  embargoPeriod: 12 months
+---
+
+```{r echo=FALSE, message=FALSE}
+suppressPackageStartupMessages(library(formd))
+.F <- formInputContext(params$duo_plus_config)
+```
+
+## {#DUO-plus}
+
+### Transparent Governance
+
+This form provides a mechanism for data contributors to _**acknowledge** and **help specify**_ how we will apply governance to your data.
+In effect, these options will apply constraints on _**how**, **when**, and **to whom**_ your data will be made available.
+You can help describe the most appropriate governance configuration for your data, balancing reuse with necessary protections. 
+
+**This form can be updated as necessary before the data Release Date**, e.g. you may need to update the terms in acknowledgment or delay the date of data release. 
+We will always contact you *before* the data is released on our platform to confirm these settings.
+
+Note that there might already be *highly recommended* defaults, which are imposed by **funder expectations** or **community norms**. 
+A yellow background indicates where a default have been already defined.
+You are not expected to change these unless other conditions override the default. 
+
+A blue background indicates the most commonly configurable options, and where your input on some data use constraints might be most important. 
+
+### Data Release and Acknowledgments
+
+**Release Date**
+
+The release date is generally calculated as the date after the embargo period.  
+`r RIA(.F$gov_ReleaseDate)`
+
+**Acknowledgments**
+
+Please indicate any acknowledgment and/or citation statement(s) required for publications resulting from use of the data.
+
+`r RIA(.F$gov_Acknowledgments)`
+
+### Data Characterization
+
+These inputs help us determine what jurisdiction/classification the data falls under.
+
+**Source Samples**
+
+`r RIA(.F$gov_SourceSamples)`
+
+**Source Geography**
+
+`r RIA(.F$gov_SourceGeography)`
+
+### Data Use Permissions
+
+Please select limitations that may apply for data reuse.
+`r RIA(.F$duo_DUP)`
+
+### Data Use Modifiers
+
+`r RIA(.F$duo_CC)` **Clinical Care Use** Indicates that use is allowed for clinical use and care.
+
+`r RIA(.F$duo_COL)` **Collaboration Required** Indicates that the requestor must agree to collaboration with the primary study investigator(s).
+
+`r RIA(.F$duo_IRB)` **Ethics approval required** Indicates that the requestor must provide documentation of local IRB/ERB approval.
+
+`r RIA(.F$duo_GSO)` **Genetic studies only** Indicates that use is limited to genetic studies only (i.e., studies that include genotype research alone or both genotype and phenotype research, but not phenotype research exclusively).
+
+`r RIA(.F$duo_GS)` **Geographical restriction** Indicates that use is limited to within a specific geographic region.
+
+`r RIA(.F$duo_IS)` **Institutional restriction** Indicates that use is limited to use within an approved institution.
+
+`r RIA(.F$duo_NMDS)` **No general methods research** Indicates that use does not allow methods development research (e.g., development of software or algorithms).
+
+`r RIA(.F$duo_NCU)` **Not for commercial use only** Indicates that use of the data is limited to non commercial use.
+
+`r RIA(.F$duo_NPU)` **Not for profit use only** Indicates that use of the data is limited to not-for-profit organizations.
+
+`r RIA(.F$duo_NPOA)` **Population origins or ancestry research prohibited** Indicates use for purposes of population, origin, or ancestry research is prohibited.
+
+`r RIA(.F$duo_MOR)` **Publication moratorium** Indicates that requestor agrees not to publish results of studies until a specific date.
+
+`r RIA(.F$duo_PUB)` **Publication required** Indicates that requestor agrees to make results of studies using the data available to the larger scientific community.
+
+`r RIA(.F$duo_RS)` **Research specific restrictions** Indicates that use is limited to studies of a certain research type.
+
+`r RIA(.F$duo_RTN)` **Return derived/enriched data to the database/resource** Indicates that the requestor must return derived/enriched data to the database/resource.
+
+`r RIA(.F$duo_TS)` **Time limit on use** Indicates that use is approved for a specific number of months.
+
+`r RIA(.F$duo_US)` **User specific restriction (limited to use by approved users)** Indicates that use is limited to use by approved users.

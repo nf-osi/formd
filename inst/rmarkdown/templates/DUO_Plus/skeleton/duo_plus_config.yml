@@ -1,0 +1,139 @@
+# Addendum 2
+Inputs:
+  DUO_Plus_Version:
+    name: DUO_Plus_Version
+    type: hidden
+    value: "[DUO_Plus_Version_Apr_2022]"
+    form: dsp
+  # Data use modifiers
+  duo_CC:
+    name: duo_CC
+    type: checkbox
+    form: dsp
+    title: Clinical care use allowed
+  duo_COL:
+    name: duo_COL
+    type: checkbox
+    form: dsp
+    title: Collaboration required
+  duo_IRB:
+    name: duo_IRB
+    type: checkbox
+    form: dsp
+    title: Ethics approval required (i.e. data use requires providing local IRB/ERB approval)
+  duo_GSO:
+    name: duo_GSO
+    type: checkbox
+    form: dsp
+    title: Genetic studies only
+  duo_GS:
+    name: duo_GS
+    type: checkbox
+    form: dsp
+    title: Geographical restriction
+  duo_IS:
+    name: duo_IS
+    type: checkbox
+    form: dsp
+    title: Institutional restriction  
+  duo_NMDS:
+    name: duo_NMDS
+    type: checkbox
+    form: dsp
+    title: No general methods research 
+  duo_NPUNCU:
+    name: duo_NPUNCU
+    type: checkbox
+    form: dsp
+    title: Not for profit, non commercial use only
+  duo_NCU:
+    name: duo_NCU
+    type: checkbox
+    form: dsp
+    title: Non commercial use only
+  duo_NPU:
+    name: duo_NPU
+    type: checkbox
+    form: dsp
+    title: Not for profit use only
+  duo_NPOA:
+    name: duo_NPOA
+    type: checkbox
+    form: dsp
+    title: Population origins or ancestry research prohibited
+  duo_PS:
+    name: duo_PS
+    type: checkbox
+    form: dsp
+    title: Project specific restriction
+  duo_MOR:
+    name: duo_MOR
+    type: checkbox
+    form: dsp
+    title: Publication moratorium
+  duo_PUB:
+    name: duo_PUB
+    type: checkbox
+    form: dsp
+    title: Publication required
+  duo_RS:
+    name: duo_RS
+    type: checkbox
+    form: dsp
+    title: Research specific restrictions
+  duo_RTN:
+    name: duo_RTN
+    type: checkbox
+    form: dsp
+    title: Return derived/enriched data to the database/resource
+  duo_TS:
+    name: duo_TS
+    type: checkbox
+    form: dsp
+    title: Time limit on use
+  duo_US:
+    name: duo_US
+    type: checkbox
+    form: dsp
+    title: User specific restriction (limited to use by approved users)
+    
+  # Data use permission
+  duo_DUP:
+    name: duo_DUP
+    type: select
+    options: ['General Research Use', 'Health, Medical, or Biomedical Research', 'Disease Specific Research', 'Population Origins or Ancestry Research Only', 'No Restriction']
+    form: dsp
+    title: Data use permission
+    
+  # Additional annotations
+  gov_SourceSamples:
+    name: gov_SourceSamples
+    type: select
+    multiple: true
+    options: ["living humans","deceased humans","animal models","in vitro cell culture","other"]
+    form: dsp
+    title: Human samples description
+  gov_PHI:
+    name: gov_PHI
+    type: select
+    multiple: true
+    options: ["specific ages","dates","Geographic information at the zip code, town, city, or state level"]
+    form: dsp
+    title: Human samples description
+  gov_SourceGeography:
+    name: gov_SourceGeography
+    type: select
+    options: [US,EUR,ASIA,Unknown]
+    form: dsp
+    title: Data use permission
+  gov_ReleaseDate:
+    name: gov_ReleaseDate
+    type: date
+    form: dsp
+    title: ReleaseDate
+  gov_Acknowledgments:
+    name: gov_Acknowledgments
+    type: textarea
+    class: wide-textarea
+    form: dsp
+    placeholder: "e.g. The results published here are in whole or in part based on data obtained from the Example Portal ( https://exampleportal.org/ ). These data were generated from X tissue collected through the Y Institute and were provided by Dr. Z.."
