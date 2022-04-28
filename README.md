@@ -4,7 +4,7 @@ This package intends to provide:
 
 - A reusable collection of form components, currently focused on collecting project intake and governance info.
 - Utils for creating web forms so that functional forms can be customized from templates or from scratch.
-- A place for Sage projects to share other reusable form documents. 
+- A place for Sage projects to share other reusable documents. 
 
 **New governance forms are in development.**
 
@@ -15,9 +15,13 @@ For Data Sharing Plans, consider DMPTool.org.
 This just provides several free and open-source well-thought-out yet still-customizable forms for specific use cases (starting with DSPs). 
 This also isn't meant for PHI collection. Do your own assessment.
 
-### Templates
+### Installation
 
-#### General Usage
+`remotes::install_github('nf-osi/formd')`
+
+### Usage
+
+#### Templates
 
 (Requires `rmarkdown` >= 2.14)
 
@@ -50,7 +54,7 @@ If using RStudio, templates can be accessed via _New File > Rmarkdown..._
 
 For more about templates (if you've never used them), see [RStudio - Rmarkdown Templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
 
-### Form Input Utils
+### Form Input Builder Utils
 
 To customize the form inputs for an existing template or a from-scratch document, you should understand how the `*config.yml` documents work.
 The "DSP Core" template is the best example of what inputs are available and how to compose them (see `dsp_core_config.yml`). 
@@ -60,7 +64,7 @@ The "DSP Core" template is the best example of what inputs are available and how
 - **Which form backend should I use/does this work with?** We recommend formspark.io. 
 There are a multitude of good form backends, though you may need to preprocess your JSON data to make PDF generation work correctly. 
 - **Can this be used with PHI?** That actually depends on your form backend and where you are putting your form. But this was really originally intended for better low-throughput administrative data collection, so it is not really recommended. 
-- **You said this could be 'A place for Sage projects to share other reusable form documents'? What can I contribute?** Possibly community surveys.
+- **You said this could be 'A place for Sage projects to share other reusable form documents'? What can I contribute?** Possibly any generalizable community surveys or data reports.
 
 ### Development Notes
 
