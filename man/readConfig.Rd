@@ -5,13 +5,19 @@
 \title{Read YAML config file}
 \usage{
 readConfig(yaml)
+
+readConfig(yaml)
 }
 \arguments{
 \item{yaml}{YAML configuration file.}
 }
 \description{
 Form inputs are specified via a YAML config file.
+
+Form inputs are specified via a YAML config file.
 }
 \details{
+TODO: Validate config after read.
+
 TODO: Validate config after read.
 }
