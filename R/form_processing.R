@@ -1,3 +1,41 @@
+#' Contextual handler for rendering input as HTML form or PDF doc
+#' 
+#' Given `mode` (which is expected to be set via `knitr` runtime parameters 
+#' so it doesn't need to be passed in), this takes care of logic for 
+#' reading in the correct input dependency and any additional processing for said input.
+#' If `mode` == "html", we expect to read a `config_file`. 
+#' If `mode` == "latex", we expect to read JSON data and process it to correct format.
+#' 
+#' @param config_file Path to YAML config file
+#' @param data Path to JSON data.
+#' @param mode The render mode.
+#' @export
+formInputContext <- function(config_file = NULL, data = NULL,
+                            mode = knitr::opts_knit$get('rmarkdown.pandoc.to')) { 
+  if(mode == "html") {
+    .F <- setConfig(config_file)
+    invisible(.F)
+  } else if(mode == "latex") {
+    .F <<- jsonlite::read_json(data)[[1]]$data
+    .F <<- fromRadioButtonInput(.F)
+    .F <<- fromTableInput(.F)
+  }
+}
+
+#' Contextual handler for creating a form checklist
+#' 
+#' This only make sense for HTML version of the form.
+#' @inheritParams formInputContext
+#' @export
+formChecklistContext <- function(config_file,
+                                 mode = knitr::opts_knit$get('rmarkdown.pandoc.to')) {
+  if(mode == "html") {
+    Checklist <- readConfig(config_file)$Checklist
+    if(!is.null(Checklist)) newChecklist(Checklist)
+  }
+}
+
+
 #' Reconstruct radio button inputs
 #'
 #' Radio button inputs have two inputs for "Yes" and "No",
