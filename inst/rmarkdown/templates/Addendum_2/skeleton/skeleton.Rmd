@@ -6,11 +6,12 @@ output:
   html_document: default
 params:
   addendum_2_config: addendum_2_config.yml
+  data: null
 ---
 
 ```{r echo=FALSE, message=FALSE}
 suppressPackageStartupMessages(library(formd))
-.F <- getConfig(params$addendum_2_config)
+.F <- formInputContext(params$addendum_2_config, params$data)
 ```
 
 ## Addendum 2 {#Addendum-2}

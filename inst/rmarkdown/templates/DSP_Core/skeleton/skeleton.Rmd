@@ -3,12 +3,12 @@ title: "DSP Core"
 author: "Sage Bionetworks"
 date: "4/11/2022"
 output:
-  pdf_document: default
   html_document:
     css: style.css
     includes:
       in_header: header.html
       in_footer: footer.html
+  pdf_document: default
 params:
   dsp_core_config: dsp_core_config.yml
   data: "../../../../../tests/test.json" # required if rendering to PDF
@@ -16,16 +16,7 @@ params:
 
 ```{r echo=FALSE, message=FALSE}
 suppressPackageStartupMessages(library(formd))
-mode <- knitr::opts_knit$get('rmarkdown.pandoc.to')
-if(mode == "html") {
-  .F <- getConfig(params$dsp_core_config)
-  Checklist <- readConfig(params$dsp_core_config)$Checklist
-  if(!is.null(Checklist)) newChecklist(Checklist)
-} else if(mode == "latex") {
-  .F <- jsonlite::read_json(params$data)[[1]]$data
-  .F <-  fromRadioButtonInput(.F)
-  .F <- fromTableInput(.F)
-}
+.F <- formInputContext(params$dsp_core_config, params$data)
 ```
 
 ## Project Details
@@ -73,4 +64,5 @@ The elements of the data-sharing plan are as follows:
 `r RIA(.F$depositTable)`
 
 
+`r RIA(.F$dspCoreVersion)`
 

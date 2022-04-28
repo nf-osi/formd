@@ -4,7 +4,7 @@ Inputs:
   dspCoreVersion:
     name: dspCoreVersion
     type: hidden
-    value: DSP_Core_Version_Apr_13_2022
+    value: "[DSP_Core_Version_Apr_2022]"
     form: dsp
   depositTable:
     id: depositTable
@@ -125,12 +125,4 @@ Inputs:
     form: dsp
     action: https://submit-form.com/vKEUeyiO
 
-
-Checklist:
-  items:
-    - name: Read the overview
-    - name: Provide project info & contacts
-    - name: Specify data to be deposited
-    - name: Add governance info as needed
-    - name: Submit this form
 
