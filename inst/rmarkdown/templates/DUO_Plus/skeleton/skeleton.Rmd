@@ -21,8 +21,9 @@ suppressPackageStartupMessages(library(formd))
 This form provides a mechanism for data contributors to _**acknowledge** and **help specify**_ how we will apply governance to your data.
 In effect, these options will apply constraints on _**how**, **when**, and **to whom**_ your data will be made available.
 You can help describe the most appropriate governance configuration for your data, balancing reuse with necessary protections. 
+Our governance framework allows you to propagate any constraints defined in the consent forms associated with your human subjects research.
 
-**This form can be updated as necessary before the data Release Date**, e.g. you may need to update the terms in acknowledgment or delay the date of data release. 
+**This form can be updated as necessary before the data Release Date**, e.g. you may need to update the terms of acknowledgments, delay the date of data release, or make changes based on changes in patient consent. 
 We will always contact you *before* the data is released on our platform to confirm these settings.
 
 Note that there might already be *highly recommended* defaults, which are imposed by **funder expectations** or **community norms**. 
@@ -36,13 +37,13 @@ A blue background indicates the most commonly configurable options, and where yo
 **Release Date**
 
 The release date is generally calculated as the date after the embargo period.  
-`r RIA(.F$gov_ReleaseDate)`
+`r RIA(.F$RLD)`
 
 **Acknowledgments**
 
 Please indicate any acknowledgment and/or citation statement(s) required for publications resulting from use of the data.
 
-`r RIA(.F$gov_Acknowledgments)`
+`r RIA(.F$ACK)`
 
 ### Data Characterization
 
@@ -50,11 +51,11 @@ These inputs help us determine what jurisdiction/classification the data falls u
 
 **Source Samples**
 
-`r RIA(.F$gov_SourceSamples)`
+`r RIA(.F$SAMP)`
 
 **Source Geography**
 
-`r RIA(.F$gov_SourceGeography)`
+`r RIA(.F$SGEO)`
 
 ### Data Use Permissions
 
@@ -93,4 +94,4 @@ Please select limitations that may apply for data reuse.
 
 `r RIA(.F$duo_TS)` **Time limit on use** Indicates that use is approved for a specific number of months.
 
-`r RIA(.F$duo_US)` **User specific restriction (limited to use by approved users)** Indicates that use is limited to use by approved users.
+`r RIA(.F$duo_US)` **User specific restriction** Indicates that use is limited to use by approved users.

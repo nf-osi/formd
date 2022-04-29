@@ -106,34 +106,36 @@ Inputs:
     title: Data use permission
     
   # Additional annotations
-  gov_SourceSamples:
-    name: gov_SourceSamples
+  SAMP:
+    name: SAMP
     type: select
     multiple: true
     options: ["living humans","deceased humans","animal models","in vitro cell culture","other"]
     form: dsp
-    title: Human samples description
-  gov_PHI:
-    name: gov_PHI
+    title: Samples description
+  PHI:
+    name: PHI
     type: select
     multiple: true
-    options: ["specific ages","dates","Geographic information at the zip code, town, city, or state level"]
+    options: ["name","address","dates","telephone number", "fax number", "email", "social security number", "medical record number", "account number", "certificate or license number", "vehicle identifiers and serial numbers", "device identifiers and serial numbers", "web URL", "Internet Protocol (IP) address", "finger or voice print", "full-face photographs and comparable images", "any other re-identifying information"] # 18 identifiers
     form: dsp
-    title: Human samples description
-  gov_SourceGeography:
-    name: gov_SourceGeography
+    title: Protected Health Information
+  SGEO:
+    name: SGEO
     type: select
-    options: [US,EUR,ASIA,Unknown]
+    multiple: true
+    options: ["USA","DEU","CHN"] # should be a full list of ISO 3166 alpha-3 codes
     form: dsp
-    title: Data use permission
-  gov_ReleaseDate:
-    name: gov_ReleaseDate
+    title: Sample source geo
+  RLD:
+    name: RLD
     type: date
     form: dsp
-    title: ReleaseDate
-  gov_Acknowledgments:
-    name: gov_Acknowledgments
+    title: Release Date
+  ACK:
+    name: ACK
     type: textarea
     class: wide-textarea
     form: dsp
+    title: Acknowledgments
     placeholder: "e.g. The results published here are in whole or in part based on data obtained from the Example Portal ( https://exampleportal.org/ ). These data were generated from X tissue collected through the Y Institute and were provided by Dr. Z.."
