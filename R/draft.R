@@ -1,21 +1,34 @@
 #' Draft DSP with recommended bundle
 #' 
-#' This is a convenience function to bring all the "standard" 
-#' paperwork templates into the draft space. 
-#' It is updated to reflect the latest concept of what is standard, 
+#' Bring all the "standard" template components into the draft space. 
+#' This should reflect the latest concept of what is standard, 
 #' i.e. some sections might be added or removed from this bundle over time. 
 #' 
-#' @param dir Directory folder to create; forms will be organized here and it will be set as working directory. 
+#' @param version Desired version of document; defaults to latest, which is v2.
 #' @param verbose Whether to be verbose.
 #' @export
-draftStandardDSP <- function(dir, verbose = TRUE) {
+draftStandardDSP <- function(version = c("v2", "v1"), verbose = TRUE) {
   wd <- getwd()
-  if(verbose) message("Creating template bundle in '", dir, "'...")
+  dir <- dsp_version <- paste("DSP_Standard", version, sep = "_")
   dir.create(dir)
   setwd(dir)
-  standard <- c("DSP_Standard", "DSP_Core", "Section_Commitment", "Section_Data_Licensing", "Section_Data_Sharing")
+  if(verbose) message("Creating template bundle '", dir, "'...")
+  
+  if(version == "v1") {
+    standard <- c(dsp_version, "DSP_Core", 
+                  "Section_Commitment", "Section_Data_Licensing", "Section_Data_Sharing", 
+                  "Sensitivity_Assessment", "Addendum_1", "Addendum_2")
+  }
+  if(version == "v2") {
+    standard <- c(dsp_version, "DSP_Core", 
+                  "Section_Commitment", "Section_Data_Licensing", "Section_Data_Sharing")
+  }
+  
   for(template in standard) {
-    rmarkdown::draft(file = template, template = template, package = "formd", edit = FALSE)
+    rmarkdown::draft(file = template, 
+                     template = template, 
+                     package = "formd", 
+                     edit = FALSE)
   }
   if(verbose) message("Done. Happy drafting!")
 }
