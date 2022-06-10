@@ -25,4 +25,8 @@ Inputs:
     type: radio
     value: 4
     form: dsp
-
+  projectDataLicense:
+    name: projectDataLicense
+    id: projectDataLicense
+    type: text
+    form: dsp
