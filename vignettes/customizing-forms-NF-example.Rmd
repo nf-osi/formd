@@ -1,0 +1,78 @@
+---
+title: "Customizing forms -- NF example"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{customizing-forms-NF-example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Intro
+
+This vignette provides a walk-through of actual usage for the NF project, focusing on the DSP form. 
+To provide some context, NF groups projects under 4 different funding mechanisms/agencies (though there can be overlap or co-funding for projects), which are:  
+
+- NTAP  
+- CTF  
+- GFF  
+- DHART-SPORE  
+
+Hence, there needs to be four versions of the forms. 
+We show the setup and adaptation of the base form to varying degrees for each version.
+
+See also related vignettes (TO DO):
+
+- More complicated customizations
+- Retrieve JSON data and generate PDF
+
+## Organization
+
+First, we organize things by creating a directory for each of the funders ([see on GitHub](https://github.com/nf-osi/forms)).
+
+Then, in CTF for example, we set up version 1 of the DSP with:
+
+`formd::draftStandardDSP(version = "v1")`
+
+This creates a folder called DSP_Standard_v1 ([see on GitHub](https://github.com/nf-osi/forms/tree/main/CTF)).
+
+In this manner, future newer versions of the same form, or other form types are located in their own form folders.
+
+## Adaptation
+
+As mentioned, forms can be adapted to varying degrees. 
+The more your use case departs from NF, the more you will have to think about this process. 
+For NF, the different levels of tweaking are summarized in the table below. 
+Note that NTAP and CTF were the original templates, so there were no real customizations for these.
+
+Column description:  
+
+- **Funder**: Label of funder version.
+- **Doc**: The original Word/Google docs version
+- **Commit**: Actual commit showing how parameters/files are customized in Rmarkdown; use as comparisons/examples of what might be expected.
+- **Degree**: Relative degree of customization; this is also obvious by looking at param/file changes in the linked commit.
+- **Html**: Live version of HTML form when rendered (after the custom commit / suggestion to compare with doc version)
+
+```{r setup, echo=FALSE}
+library(formd)
+```
+
+```{r summary, echo=FALSE}
+example_summary <- data.frame(
+  Funder = c("CTF", "NTAP", "DHART-SPORE", "GFF"),
+  Doc = c("https://docs.google.com/document/d/1fhtjpvq1r4-QqB9YjG5KICW4pPDtRQpKkdlhPN1xMbk", "https://docs.google.com/document/d/1aa7061ekrk5qbFVnB7pRahnN1hDd0Ut_090QzdP0UyU", "https://docs.google.com/document/d/1JC8eNOS2bnrpIJhEX3zqLmqYTHUDF7Ui7xe139kBcCU", "https://docs.google.com/document/d/1ib4RreL_UL7AC7NKgKFIu_8PBvJDeQxfNN7qDHh4GfI"),
+  Commit = c("https://github.com/nf-osi/forms/commit/9ebe5d260a5d0e3e06c5702d99e0edcba5acd170", "https://github.com/nf-osi/forms/commit/25cae2d8785e6d23103db40d4d55776bda92a9e1", "https://github.com/nf-osi/forms/commit/96d6089ad83f95c55c9d1f997c0870ab96e6bf30", "https://github.com/nf-osi/forms/commit/47735004847ff90d599d3f4322370c890b601059"),
+  Degree = c("basic params", "basic params", "basic params + wording", "basic params + new inputs + wording"),
+  Html = c("https://nf-osi.github.io/forms/CTF/DSP_Standard_v1/DSP_Standard_v1.html", "https://nf-osi.github.io/forms/NTAP/DSP_Standard_v1/DSP_Standard_v1.html", "https://nf-osi.github.io/forms/DHART-SPORE/DSP_Standard_v1/DSP_Standard_v1.html", "https://nf-osi.github.io/forms/GFF/DSP_Standard_v1/DSP_Standard_v1.html")
+)
+knitr::kable(example_summary) 
+```
+
+
+
